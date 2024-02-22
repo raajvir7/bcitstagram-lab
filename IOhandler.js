@@ -99,7 +99,8 @@ const grayScale = (pathIn, pathOut) => {
             }
           }
           console.log(file)
-          this.pack().pipe(fs.createWriteStream(`${(file.replace(`${__dirname}`,"").replace('unzipped', pathOut))}`));
+          let fileArr = file.split("\\");
+          this.pack().pipe(fs.createWriteStream(`${pathOut}/${fileArr.slice(-1).pop()}`));
           resolve();
         });
           
@@ -128,7 +129,9 @@ const sepia = (pathIn, pathOut) => {
               this.data[idx + 2] = Math.min(255, (0.272 * r + 0.534 * g + 0.131 * b));
             }
           }
-          this.pack().pipe(fs.createWriteStream(`${(file.replace(`${__dirname}`,"").replace('unzipped', pathOut))}`));
+          
+          fileArr = file.split("\\");
+          this.pack().pipe(fs.createWriteStream(`${pathOut}/${fileArr.slice(-1).pop()}`));
           resolve();
         });
         
