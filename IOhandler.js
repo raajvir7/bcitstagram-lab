@@ -83,7 +83,11 @@ const grayScale = (pathIn, pathOut) => {
   return new Promise((resolve, reject) => {
     allFiles.forEach((file) => {
       fs.createReadStream(file)
-        .pipe(new PNG())
+        .pipe(new PNG(
+          {
+            filterType: 4
+          }
+        ))
         .on("parsed", function () {
           for (let y = 0; y < this.height; y++) {
             for (let x = 0; x < this.width; x++) {
@@ -107,7 +111,11 @@ const sepia = (pathIn, pathOut) => {
   return new Promise((resolve, reject) => {
     allFiles.forEach((file) => {
       fs.createReadStream(file)
-        .pipe(new PNG())
+        .pipe(new PNG(
+          {
+            filterType: 4
+          }
+        ))
         .on("parsed", function () {
           for (let y = 0; y < this.height; y++) {
             for (let x = 0; x < this.width; x++) {
